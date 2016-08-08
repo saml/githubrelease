@@ -64,11 +64,9 @@ class Github:
         return suggest_next_version(latest_tag_name)
 
     def release(self, title, tag_name=None, latest_release=None):
+        if latest_release is None:
+            latest_release = self.latest_release()
         if tag_name is None:
-            if latest_release is None:
-                latest_release = self.latest_release()
-            if latest_release is None:
-                raise Exception('Need tag_name')
             tag_name = suggest_next_version(latest_release.tag_name)
 
         description = '# ' + '\n\n# '.join(commit.message for commit in self.repo.compare_commits(latest_release.tag_name, 'master').commits)
