@@ -34,7 +34,7 @@ def suggest_next_version(latest_tag_name):
 
 
 class Github:
-    def __init__(self, token=None, repo=None):
+    def __init__(self, repo=None, token=None):
         self.token = token
         self.gh = None
         self.repo = None
